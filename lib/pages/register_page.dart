@@ -1,28 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/components/app_button.dart';
 import 'package:food_delivery/components/app_textfield.dart';
-import 'package:food_delivery/pages/home_page.dart';
 
-class LoginPage extends StatefulWidget {
-
+class RegisterPage extends StatefulWidget {
   final void Function()? onTap;
 
-
-  const LoginPage({super.key,required this.onTap});
+  const RegisterPage({super.key, required this.onTap});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController emailController = TextEditingController();
-
+  final TextEditingController confirmPasswordController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
-  void Login(){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePage()));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,23 +29,25 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 10,),
             AppTextfield(controller: passwordController, hintText: 'Enter Password', obscureText: true),
             const SizedBox(height: 10,),
-            AppButton(text: 'Login', onTap: Login,),
+            AppTextfield(controller: confirmPasswordController, hintText: 'Retype Password', obscureText: true),
+            const SizedBox(height: 10,),
+            AppButton(text: 'Register account', onTap: (){},),
             const SizedBox(height: 10,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Not yet registered ?",
+                  "Already have an account ? Go to ",
                   style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
                 ),
                 const SizedBox(width: 4,),
                 GestureDetector(
                   onTap: widget.onTap,
                   child: Text(
-                    'Register now',
+                    'Login Page',
                     style: TextStyle(
-                      color: Colors.red[300],
-                      fontWeight: FontWeight.bold
+                        color: Colors.red[300],
+                        fontWeight: FontWeight.bold
                     ),
                   ),
                 )
